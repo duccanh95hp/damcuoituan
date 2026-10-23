@@ -1,13 +1,62 @@
 const CONFIG = {
   weddingDate: new Date("2026-12-06T10:30:00+07:00"),
-  guest: new URLSearchParams(window.location.search).get("guest") || "Bạn thân mến",
 };
 
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
-$("#coverGuest").textContent = CONFIG.guest;
-$("#heroGuest").textContent = CONFIG.guest;
+const routeName = window.location.pathname.replace(/^\/+|\/+$/g, "").split("/")[0];
+let pathGuest = "";
+try {
+  pathGuest = decodeURIComponent(routeName || "").trim();
+} catch {
+  pathGuest = "";
+}
+if (pathGuest.toLowerCase() === "index.html") pathGuest = "";
+const queryGuest = new URLSearchParams(window.location.search).get("guest")?.trim() || "";
+const guestName = pathGuest || queryGuest;
+const guestBuilder = $("#guestBuilder");
+const isBuilderPage = !guestName;
+document.body.classList.toggle("is-builder", isBuilderPage);
+guestBuilder.hidden = !isBuilderPage;
+
+if (isBuilderPage) {
+  const guestForm = $("#guestLinkForm");
+  const guestInput = $("#guestNameInput");
+  const result = $("#guestLinkResult");
+  const linkOutput = $("#guestLinkOutput");
+  const previewLink = $("#previewGuestLink");
+  const status = $("#builderStatus");
+
+  guestForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const name = guestInput.value.trim().replace(/\s+/g, " ");
+    if (!name) return;
+
+    const personalLink = `${window.location.origin}/${encodeURIComponent(name)}`;
+    linkOutput.value = personalLink;
+    previewLink.href = personalLink;
+    result.hidden = false;
+    status.textContent = `Đã tạo link riêng cho ${name}.`;
+  });
+
+  $("#copyGuestLink").addEventListener("click", async () => {
+    if (!linkOutput.value) return;
+    try {
+      await navigator.clipboard.writeText(linkOutput.value);
+      status.textContent = "Đã sao chép link thiệp. Bạn có thể gửi cho khách mời.";
+    } catch {
+      linkOutput.focus();
+      linkOutput.select();
+      document.execCommand("copy");
+      status.textContent = "Đã sao chép link thiệp. Bạn có thể gửi cho khách mời.";
+    }
+  });
+}
+
+const personalizedGuest = guestName || "Bạn thân mến";
+$("#coverGuest").textContent = personalizedGuest;
+$("#heroGuest").textContent = personalizedGuest;
 
 const cover = $("#cover");
 $("#openInvitation").addEventListener("click", () => {
@@ -27,7 +76,7 @@ function renderCalendar() {
   for (let index = 0; index < mondayStart; index += 1) {
     const empty = document.createElement("span");
     empty.className = "empty";
-    empty.textContent = "0";
+    empty.textContent = "";
     calendar.append(empty);
   }
   for (let day = 1; day <= daysInMonth; day += 1) {

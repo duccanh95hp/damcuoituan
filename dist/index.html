@@ -21,6 +21,30 @@
     <div class="ambient ambient-left" aria-hidden="true"></div>
     <div class="ambient ambient-right" aria-hidden="true"></div>
 
+    <section class="guest-builder" id="guestBuilder" aria-labelledby="builderTitle" hidden>
+      <div class="guest-builder-card">
+        <span class="builder-monogram" aria-hidden="true">K <i>♡</i> M</span>
+        <span class="builder-kicker">THIỆP CƯỚI ONLINE</span>
+        <h1 id="builderTitle">Gửi một lời mời thật riêng</h1>
+        <p>Nhập tên khách mời để tạo đường dẫn cá nhân. Khi mở link, thiệp sẽ gọi đúng tên người nhận.</p>
+        <form class="guest-link-form" id="guestLinkForm">
+          <label for="guestNameInput">Họ tên người nhận</label>
+          <input id="guestNameInput" name="guestName" type="text" placeholder="Ví dụ: Bạn Tuấn" autocomplete="name" maxlength="100" required />
+          <button class="primary-button" type="submit">Tạo link thiệp <span aria-hidden="true">↗</span></button>
+        </form>
+        <div class="guest-link-result" id="guestLinkResult" hidden>
+          <label for="guestLinkOutput">Link thiệp cá nhân</label>
+          <div class="guest-link-row">
+            <input id="guestLinkOutput" type="text" readonly aria-label="Link thiệp cá nhân" />
+            <button class="copy-link-button" id="copyGuestLink" type="button">Sao chép</button>
+          </div>
+          <a class="preview-guest-link" id="previewGuestLink" href="#" target="_blank" rel="noreferrer">Mở thử thiệp <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="builder-status" id="builderStatus" role="status" aria-live="polite"></p>
+        <small class="builder-footnote">Khánh An & Minh Khang · 06.12.2026</small>
+      </div>
+    </section>
+
     <div class="cover" id="cover" aria-label="Bìa thiệp mời">
       <div class="cover-card">
         <span class="cover-kicker">THIỆP MỜI</span>
@@ -37,9 +61,8 @@
     </div>
 
     <main class="invitation" id="invitation">
-      <div class="topbar">
-        <span class="topbar-mark">K <b>♡</b> M</span>
-        <span class="topbar-note">06.12.2026 · Hà Nội</span>
+      <div class="topbar" aria-hidden="true"></div>
+      <div class="music-dock">
         <button class="icon-button" id="musicToggle" type="button" aria-label="Bật nhạc nền" aria-pressed="false">
           <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         </button>
@@ -51,17 +74,15 @@
         <h1>Khánh An <span>♡</span> Minh Khang</h1>
         <div class="hero-image image-frame">
           <img
-            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85"
+            src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1200&q=85"
             alt="Cặp đôi trong ngày cưới"
           />
-          <span class="image-label">our beginning</span>
         </div>
         <div class="invite-line">
           <span>TRÂN TRỌNG KÍNH MỜI</span>
           <strong id="heroGuest">Bạn thân mến</strong>
         </div>
         <p class="hero-copy">Sự hiện diện của bạn là món quà quý giá nhất trong ngày vui của chúng mình.</p>
-        <a class="scroll-cue" href="#save-date" aria-label="Cuộn xuống">↓</a>
       </section>
 
       <section class="section-pad save-date reveal" id="save-date">
@@ -87,7 +108,7 @@
       </section>
 
       <section class="family-strip reveal">
-        <div class="family-note">Gặp gỡ hai gia đình</div>
+        <div class="family-note">Hai gia đình · Một niềm vui</div>
         <div class="family-grid">
           <article class="family-card">
             <span class="family-label">Nhà trai</span>
@@ -101,7 +122,12 @@
             <p>Ông Lê Văn An<br />Bà Phạm Thị Hương</p>
           </article>
         </div>
-        <div class="family-signature">Khánh An <span>&</span> Minh Khang</div>
+        <div class="couple-portraits">
+          <figure><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=700&q=85" alt="Chú rể Minh Khang" /><figcaption>Minh Khang</figcaption></figure>
+          <span class="portrait-heart" aria-hidden="true">♡</span>
+          <figure><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=700&q=85" alt="Cô dâu Khánh An" /><figcaption>Khánh An</figcaption></figure>
+        </div>
+        <div class="family-signature">Minh Khang <span>&</span> Khánh An</div>
       </section>
 
       <section class="section-pad event-section reveal" id="event">
