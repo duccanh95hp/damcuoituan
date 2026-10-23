@@ -140,6 +140,25 @@ if (isBuilderPage) {
     bulkResults.hidden = false;
   }
 
+  $("#downloadExcelTemplate").addEventListener("click", async () => {
+    const templateButton = $("#downloadExcelTemplate");
+    templateButton.disabled = true;
+    bulkStatus.textContent = "Đang chuẩn bị file Excel mẫu…";
+    try {
+      const XLSX = await loadSpreadsheetLibrary();
+      const workbook = XLSX.utils.book_new();
+      const worksheet = XLSX.utils.aoa_to_sheet([["Họ và tên"]]);
+      worksheet["!cols"] = [{ wch: 32 }];
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Danh sách khách");
+      XLSX.writeFile(workbook, "mau-danh-sach-khach-moi.xlsx", { compression: true });
+      bulkStatus.textContent = "Đã tải file mẫu. Điền tên khách bên dưới cột “Họ và tên” rồi chọn file để tạo link.";
+    } catch (error) {
+      bulkStatus.textContent = error.message || "Chưa thể tạo file mẫu. Hãy kiểm tra kết nối mạng rồi thử lại.";
+    } finally {
+      templateButton.disabled = false;
+    }
+  });
+
   excelInput.addEventListener("change", async () => {
     const file = excelInput.files?.[0];
     if (!file) return;

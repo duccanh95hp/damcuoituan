@@ -248,6 +248,11 @@ body.is-builder .invitation { display: none; }
 .file-picker strong { color: var(--wine); font-size: 12px; }
 .file-picker small { margin-top: 3px; color: var(--muted); font-size: 10px; }
 .file-picker input { width: min(48%, 260px); margin-left: auto; color: var(--muted); font-size: 10px; }
+.template-download { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; padding: 9px 0; border: 0; background: transparent; color: var(--wine); font-size: 11px; font-weight: 700; cursor: pointer; }
+.template-download span { font-size: 17px; }
+.template-download:hover { color: var(--wine-soft); text-decoration: underline; }
+.template-download:disabled { opacity: .55; cursor: wait; }
+.template-note { margin: 1px 0 0; color: var(--muted); font-size: 10px; }
 .bulk-status { min-height: 18px; margin: 9px 0 0; color: var(--muted); font-size: 11px; }
 .bulk-results { margin-top: 17px; }
 .bulk-results[hidden] { display: none; }
