@@ -52,6 +52,148 @@ if (isBuilderPage) {
       status.textContent = "Đã sao chép link thiệp. Bạn có thể gửi cho khách mời.";
     }
   });
+
+  const excelInput = $("#guestExcel");
+  const bulkStatus = $("#bulkStatus");
+  const bulkResults = $("#bulkResults");
+  const guestLinkRows = $("#guestLinkRows");
+  let spreadsheetLibrary;
+  let bulkLinks = [];
+
+  function loadSpreadsheetLibrary() {
+    if (window.XLSX) return Promise.resolve(window.XLSX);
+    if (!spreadsheetLibrary) {
+      spreadsheetLibrary = new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js";
+        script.onload = () => window.XLSX ? resolve(window.XLSX) : reject(new Error("Không thể khởi tạo thư viện Excel."));
+        script.onerror = () => reject(new Error("Không tải được bộ đọc Excel. Hãy kiểm tra kết nối mạng rồi thử lại."));
+        document.head.append(script);
+      });
+    }
+    return spreadsheetLibrary;
+  }
+
+  function normalizeColumnName(value) {
+    return String(value ?? "")
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .replace(/đ/gi, "d")
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "");
+  }
+
+  function createGuestUrl(name) {
+    return `${window.location.origin}/${encodeURIComponent(name)}`;
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const temporary = document.createElement("textarea");
+      temporary.value = text;
+      temporary.style.position = "fixed";
+      temporary.style.opacity = "0";
+      document.body.append(temporary);
+      temporary.select();
+      document.execCommand("copy");
+      temporary.remove();
+    }
+  }
+
+  function renderGuestLinks(guests) {
+    bulkLinks = guests.map((name) => ({ name, url: createGuestUrl(name) }));
+    guestLinkRows.replaceChildren();
+
+    bulkLinks.forEach(({ name, url }) => {
+      const row = document.createElement("tr");
+      const nameCell = document.createElement("td");
+      nameCell.className = "bulk-name-cell";
+      nameCell.textContent = name;
+
+      const linkCell = document.createElement("td");
+      linkCell.className = "bulk-url-cell";
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.textContent = url;
+      linkCell.append(link);
+
+      const actionCell = document.createElement("td");
+      const copyButton = document.createElement("button");
+      copyButton.className = "row-copy-button";
+      copyButton.type = "button";
+      copyButton.textContent = "Sao chép";
+      copyButton.setAttribute("aria-label", `Sao chép link của ${name}`);
+      copyButton.addEventListener("click", async () => {
+        await copyText(url);
+        bulkStatus.textContent = `Đã sao chép link của ${name}.`;
+      });
+      actionCell.append(copyButton);
+      row.append(nameCell, linkCell, actionCell);
+      guestLinkRows.append(row);
+    });
+
+    $("#bulkCount").textContent = `${bulkLinks.length} khách mời`;
+    bulkResults.hidden = false;
+  }
+
+  excelInput.addEventListener("change", async () => {
+    const file = excelInput.files?.[0];
+    if (!file) return;
+    excelInput.value = "";
+    bulkResults.hidden = true;
+    bulkStatus.textContent = `Đang đọc ${file.name}…`;
+
+    try {
+      const XLSX = await loadSpreadsheetLibrary();
+      const workbook = XLSX.read(await file.arrayBuffer(), { type: "array" });
+      const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+      if (!firstSheet) throw new Error("File Excel chưa có trang tính nào.");
+
+      const rows = XLSX.utils.sheet_to_json(firstSheet, { header: 1, defval: "", raw: false });
+      const recognizedHeaders = new Set(["hovaten", "hoten", "fullname", "name"]);
+      const headerRow = rows.findIndex((row) => row.some((cell) => recognizedHeaders.has(normalizeColumnName(cell))));
+      if (headerRow < 0) throw new Error("Không tìm thấy cột “Họ và tên”. Hãy thêm tiêu đề này ở hàng đầu của bảng.");
+
+      const nameColumn = rows[headerRow].findIndex((cell) => recognizedHeaders.has(normalizeColumnName(cell)));
+      const guests = rows.slice(headerRow + 1)
+        .map((row) => String(row[nameColumn] ?? "").trim().replace(/\s+/g, " "))
+        .filter(Boolean);
+      if (!guests.length) throw new Error("Cột “Họ và tên” chưa có dữ liệu khách mời.");
+      if (guests.length > 2000) throw new Error("File có hơn 2.000 khách. Hãy chia thành nhiều file nhỏ hơn.");
+
+      renderGuestLinks(guests);
+      bulkStatus.textContent = `Đã tạo ${guests.length} link. File được xử lý trên thiết bị của bạn.`;
+    } catch (error) {
+      bulkStatus.textContent = error.message || "Không đọc được file. Hãy thử lại với định dạng Excel hoặc CSV.";
+    }
+  });
+
+  $("#copyAllGuestLinks").addEventListener("click", async () => {
+    if (!bulkLinks.length) return;
+    const rows = ["Họ và tên\tLink thiệp", ...bulkLinks.map(({ name, url }) => `${name}\t${url}`)];
+    await copyText(rows.join("\n"));
+    bulkStatus.textContent = `Đã sao chép danh sách ${bulkLinks.length} link.`;
+  });
+
+  $("#downloadGuestLinks").addEventListener("click", () => {
+    if (!bulkLinks.length) return;
+    const escapeCsv = (value) => `"${String(value).replace(/"/g, '""')}"`;
+    const csv = [
+      ["Họ và tên", "Link thiệp"],
+      ...bulkLinks.map(({ name, url }) => [name, url]),
+    ].map((row) => row.map(escapeCsv).join(",")).join("\r\n");
+    const blob = new Blob(["\uFEFF", csv], { type: "text/csv;charset=utf-8" });
+    const downloadUrl = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = downloadUrl;
+    anchor.download = "danh-sach-link-thiep-cuoi.csv";
+    anchor.click();
+    URL.revokeObjectURL(downloadUrl);
+  });
 }
 
 const personalizedGuest = guestName || "Bạn thân mến";

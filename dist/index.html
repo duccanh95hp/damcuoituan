@@ -40,6 +40,36 @@
           </div>
           <a class="preview-guest-link" id="previewGuestLink" href="#" target="_blank" rel="noreferrer">Mở thử thiệp <span aria-hidden="true">↗</span></a>
         </div>
+
+        <section class="bulk-import" aria-labelledby="bulkImportTitle">
+          <span class="bulk-divider" aria-hidden="true"></span>
+          <span class="builder-kicker">GỬI THIỆP HÀNG LOẠT</span>
+          <h2 id="bulkImportTitle">Tạo nhiều link cùng lúc</h2>
+          <p class="bulk-description">Chọn file Excel có hàng tiêu đề “Họ và tên”. Danh sách được xử lý ngay trên trình duyệt, không tải lên máy chủ.</p>
+          <label class="file-picker" for="guestExcel">
+            <span class="file-picker-icon" aria-hidden="true">↑</span>
+            <span><strong>Chọn file Excel</strong><small>Hỗ trợ .xlsx, .xls và .csv</small></span>
+            <input id="guestExcel" type="file" accept=".xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv" />
+          </label>
+          <p class="bulk-status" id="bulkStatus" role="status" aria-live="polite">Cột tên hỗ trợ “Họ và tên”, “Họ tên” hoặc “Full Name”.</p>
+
+          <div class="bulk-results" id="bulkResults" hidden>
+            <div class="bulk-toolbar">
+              <strong id="bulkCount">0 khách mời</strong>
+              <div>
+                <button class="bulk-action" id="copyAllGuestLinks" type="button">Sao chép danh sách</button>
+                <button class="bulk-action bulk-action-light" id="downloadGuestLinks" type="button">Tải CSV</button>
+              </div>
+            </div>
+            <div class="bulk-table-wrap">
+              <table class="bulk-table">
+                <thead><tr><th>Họ và tên</th><th>Link thiệp</th><th aria-label="Thao tác"></th></tr></thead>
+                <tbody id="guestLinkRows"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
         <p class="builder-status" id="builderStatus" role="status" aria-live="polite"></p>
         <small class="builder-footnote">Khánh An & Minh Khang · 06.12.2026</small>
       </div>
