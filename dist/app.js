@@ -223,6 +223,7 @@ const cover = $("#cover");
 $("#openInvitation").addEventListener("click", () => {
   cover.classList.add("is-hidden");
   document.body.classList.add("is-open");
+  startBackgroundMusic();
   window.setTimeout(() => $("#home").scrollIntoView({ behavior: "smooth", block: "start" }), 180);
 });
 
@@ -339,28 +340,32 @@ form.addEventListener("submit", (event) => {
 });
 
 const musicToggle = $("#musicToggle");
-let audioContext;
-let oscillator;
+const musicPlayer = $("#musicPlayer");
+const musicFrame = $("#musicFrame");
+const musicEmbedUrl = "https://www.youtube-nocookie.com/embed/7o5XAg_EeLw?autoplay=1&playsinline=1&rel=0";
+
+function startBackgroundMusic() {
+  if (!musicPlayer.hidden) return;
+  musicPlayer.hidden = false;
+  musicFrame.src = musicEmbedUrl;
+  musicToggle.classList.add("is-playing");
+  musicToggle.setAttribute("aria-pressed", "true");
+  musicToggle.setAttribute("aria-expanded", "true");
+  musicToggle.setAttribute("aria-label", "Tắt nhạc nền I Do");
+  showToast("Đang phát I Do — 911 & Đức Phúc");
+}
+
+function stopBackgroundMusic() {
+  if (musicPlayer.hidden) return;
+  musicFrame.src = "about:blank";
+  musicPlayer.hidden = true;
+  musicToggle.classList.remove("is-playing");
+  musicToggle.setAttribute("aria-pressed", "false");
+  musicToggle.setAttribute("aria-expanded", "false");
+  musicToggle.setAttribute("aria-label", "Phát nhạc nền I Do");
+}
+
 musicToggle.addEventListener("click", () => {
-  if (!audioContext) {
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    oscillator = audioContext.createOscillator();
-    const gain = audioContext.createGain();
-    oscillator.type = "sine";
-    oscillator.frequency.value = 261.63;
-    gain.gain.value = 0.015;
-    oscillator.connect(gain).connect(audioContext.destination);
-    oscillator.start();
-    musicToggle.classList.add("is-playing");
-    musicToggle.setAttribute("aria-pressed", "true");
-    showToast("Nhạc nền đã bật");
-  } else if (audioContext.state === "running") {
-    audioContext.suspend();
-    musicToggle.classList.remove("is-playing");
-    musicToggle.setAttribute("aria-pressed", "false");
-  } else {
-    audioContext.resume();
-    musicToggle.classList.add("is-playing");
-    musicToggle.setAttribute("aria-pressed", "true");
-  }
+  if (musicPlayer.hidden) startBackgroundMusic();
+  else stopBackgroundMusic();
 });

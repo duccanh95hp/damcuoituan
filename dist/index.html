@@ -95,7 +95,23 @@
     <main class="invitation" id="invitation">
       <div class="topbar" aria-hidden="true"></div>
       <div class="music-dock">
-        <button class="icon-button" id="musicToggle" type="button" aria-label="Bật nhạc nền" aria-pressed="false">
+        <div class="music-player" id="musicPlayer" hidden>
+          <div class="music-player-heading">
+            <span><strong>I Do</strong><small>911 &amp; Đức Phúc</small></span>
+            <span class="music-player-note">Nhạc nền thiệp cưới</span>
+          </div>
+          <iframe
+            id="musicFrame"
+            title="I Do — 911 và Đức Phúc"
+            width="356"
+            height="200"
+            src="about:blank"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <button class="icon-button" id="musicToggle" type="button" aria-label="Phát nhạc nền I Do" aria-pressed="false" aria-expanded="false">
           <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         </button>
       </div>
