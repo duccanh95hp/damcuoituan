@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#5b101b" />
+    <meta
+      name="description"
+      content="Thiệp cưới online của Khánh An và Minh Khang — một ngày để nhớ, một đời để thương."
+    />
+    <title>Khánh An & Minh Khang — Thiệp cưới</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Italianno&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-left" aria-hidden="true"></div>
+    <div class="ambient ambient-right" aria-hidden="true"></div>
+
+    <div class="cover" id="cover" aria-label="Bìa thiệp mời">
+      <div class="cover-card">
+        <span class="cover-kicker">THIỆP MỜI</span>
+        <span class="cover-date">06 · 12 · 2026</span>
+        <span class="cover-names">Khánh An <i>♡</i> Minh Khang</span>
+        <div class="cover-photo" role="img" aria-label="Ảnh cưới minh họa"></div>
+        <span class="cover-welcome">Trân trọng kính mời</span>
+        <strong id="coverGuest">Bạn thân mến</strong>
+        <button class="cover-open" id="openInvitation" type="button">
+          Mở thiệp <span aria-hidden="true">↗</span>
+        </button>
+        <small>Chạm để bắt đầu câu chuyện của chúng mình</small>
+      </div>
+    </div>
+
+    <main class="invitation" id="invitation">
+      <div class="topbar">
+        <span class="topbar-mark">K <b>♡</b> M</span>
+        <span class="topbar-note">06.12.2026 · Hà Nội</span>
+        <button class="icon-button" id="musicToggle" type="button" aria-label="Bật nhạc nền" aria-pressed="false">
+          <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </button>
+      </div>
+
+      <section class="hero section-pad reveal" id="home">
+        <div class="eyebrow">Thiệp mời</div>
+        <p class="hero-date">06 . 12 . 2026</p>
+        <h1>Khánh An <span>♡</span> Minh Khang</h1>
+        <div class="hero-image image-frame">
+          <img
+            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85"
+            alt="Cặp đôi trong ngày cưới"
+          />
+          <span class="image-label">our beginning</span>
+        </div>
+        <div class="invite-line">
+          <span>TRÂN TRỌNG KÍNH MỜI</span>
+          <strong id="heroGuest">Bạn thân mến</strong>
+        </div>
+        <p class="hero-copy">Sự hiện diện của bạn là món quà quý giá nhất trong ngày vui của chúng mình.</p>
+        <a class="scroll-cue" href="#save-date" aria-label="Cuộn xuống">↓</a>
+      </section>
+
+      <section class="section-pad save-date reveal" id="save-date">
+        <div class="section-heading compact">
+          <span class="section-kicker">Save the date</span>
+          <h2>Một ngày để nhớ</h2>
+          <p>Tháng 12 · 2026</p>
+        </div>
+        <div class="calendar-card">
+          <div class="calendar-head">
+            <span>THÁNG 12</span>
+            <strong>2026</strong>
+          </div>
+          <div class="calendar-grid calendar-weekdays" aria-hidden="true">
+            <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+          </div>
+          <div class="calendar-grid" id="calendar" aria-label="Lịch tháng 12 năm 2026"></div>
+        </div>
+        <div class="calendar-foot">
+          <span class="calendar-dot"></span>
+          <span>Ngày chúng mình bắt đầu một chương mới</span>
+        </div>
+      </section>
+
+      <section class="family-strip reveal">
+        <div class="family-note">Gặp gỡ hai gia đình</div>
+        <div class="family-grid">
+          <article class="family-card">
+            <span class="family-label">Nhà trai</span>
+            <h3>Gia đình<br /><em>Minh Khang</em></h3>
+            <p>Ông Nguyễn Văn Minh<br />Bà Trần Thị Lan</p>
+          </article>
+          <div class="family-heart" aria-hidden="true">♡</div>
+          <article class="family-card family-card-right">
+            <span class="family-label">Nhà gái</span>
+            <h3>Gia đình<br /><em>Khánh An</em></h3>
+            <p>Ông Lê Văn An<br />Bà Phạm Thị Hương</p>
+          </article>
+        </div>
+        <div class="family-signature">Khánh An <span>&</span> Minh Khang</div>
+      </section>
+
+      <section class="section-pad event-section reveal" id="event">
+        <div class="section-heading on-dark">
+          <span class="section-kicker">The celebration</span>
+          <h2>Sự kiện cưới</h2>
+        </div>
+        <article class="event-card">
+          <div class="event-image image-frame">
+            <img
+              src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85"
+              alt="Không gian lễ cưới"
+            />
+            <span class="event-image-stamp">06<br /><small>DEC</small></span>
+          </div>
+          <div class="event-details">
+            <span class="event-type">Lễ thành hôn</span>
+            <h3>Chúng mình về chung một nhà</h3>
+            <div class="event-info"><span>◷</span><p><strong>Chủ Nhật, 06.12.2026</strong><br />10:30 sáng · Đón khách từ 10:00</p></div>
+            <div class="event-info"><span>⌖</span><p><strong>The Garden House</strong><br />18 Hoàng Văn Thụ, Hà Nội</p></div>
+            <a class="text-link" href="https://maps.google.com/?q=18+Hoang+Van+Thu+Ha+Noi" target="_blank" rel="noreferrer">Xem bản đồ <span>↗</span></a>
+          </div>
+        </article>
+      </section>
+
+      <section class="section-pad gallery-section reveal" id="gallery">
+        <div class="section-heading compact">
+          <span class="section-kicker">Our little moments</span>
+          <h2>Album ảnh cưới</h2>
+          <p>Những khoảnh khắc chúng mình muốn lưu giữ cùng bạn</p>
+        </div>
+        <div class="gallery-grid">
+          <button class="gallery-item gallery-tall" type="button" data-image="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=85" data-caption="Cùng nhau đi qua những mùa yêu" aria-label="Mở ảnh album 1">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=85" alt="Cô dâu chú rể nhìn nhau" />
+            <span>01</span>
+          </button>
+          <button class="gallery-item" type="button" data-image="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=1200&q=85" data-caption="Nắm tay nhau thật lâu" aria-label="Mở ảnh album 2">
+            <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=900&q=85" alt="Đôi tay nắm nhau" />
+            <span>02</span>
+          </button>
+          <button class="gallery-item" type="button" data-image="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85" data-caption="Hẹn gặp bạn trong ngày trọng đại" aria-label="Mở ảnh album 3">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=85" alt="Bàn tiệc cưới" />
+            <span>03</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="wishes-section reveal" id="wishes">
+        <div class="section-pad section-heading compact">
+          <span class="section-kicker">From the heart</span>
+          <h2>Những lời chúc tốt đẹp</h2>
+          <p>Cảm ơn bạn đã dành một chút yêu thương cho chúng mình.</p>
+        </div>
+        <div class="wish-list" id="wishList">
+          <article class="wish-card"><p>“Chúc hai bạn luôn nắm tay nhau thật chặt, thương nhau thật nhiều và có một hành trình thật rực rỡ.”</p><span>— Mai & Nam · bạn thân</span></article>
+          <article class="wish-card"><p>“Hạnh phúc nhé! Mong mỗi ngày bên nhau đều là một ngày đáng nhớ.”</p><span>— Phương Linh · đồng nghiệp</span></article>
+          <article class="wish-card"><p>“Chúc mừng ngày vui của hai bạn. Trăm năm hạnh phúc và sớm có tin vui!”</p><span>— Gia đình nhỏ</span></article>
+        </div>
+        <button class="outline-button centered" id="focusRsvp" type="button">♡ Gửi lời chúc cho cô dâu chú rể</button>
+      </section>
+
+      <section class="section-pad rsvp-section reveal" id="rsvp">
+        <div class="section-heading compact">
+          <span class="section-kicker">Let us know</span>
+          <h2>Lời chúc & xác nhận tham dự</h2>
+          <p>Mỗi lời chúc của bạn đều là niềm hạnh phúc với chúng mình.</p>
+        </div>
+        <form class="rsvp-form" id="rsvpForm">
+          <label class="field wide"><span>Lời chúc 💌</span><textarea id="message" rows="3" placeholder="Viết vài dòng yêu thương..."></textarea></label>
+          <div class="guest-of"><span>Bạn là khách mời của ai?</span><div class="choice-row" role="group" aria-label="Bạn là khách mời của ai">
+            <button type="button" class="choice active" data-choice="Chú rể">Chú rể</button>
+            <button type="button" class="choice" data-choice="Cô dâu">Cô dâu</button>
+            <button type="button" class="choice" data-choice="Cả hai">Cả hai</button>
+          </div></div>
+          <label class="field"><span>Tên của bạn</span><input id="sender" type="text" placeholder="Nguyễn Văn A" required /></label>
+          <label class="field"><span>Biệt danh</span><input id="nickname" type="text" placeholder="Bạn đại học" /></label>
+          <label class="field"><span>Bạn có thể tham dự không?</span><select id="attendance" required><option value="">Chọn câu trả lời</option><option>✨ Chắc chắn rồi, mình sẽ đến</option><option>🤍 Mình sẽ cố gắng sắp xếp</option><option>💌 Rất tiếc mình không thể tham dự</option></select></label>
+          <label class="field"><span>Số người tham dự</span><select id="party"><option>1 người</option><option>2 người</option><option>3 người</option><option>4 người</option></select></label>
+          <button class="primary-button wide" type="submit">Gửi lời chúc <span>↗</span></button>
+        </form>
+        <p class="form-note" id="formNote" role="status"></p>
+      </section>
+
+      <section class="gift-section reveal" id="gift">
+        <div class="gift-orbit" aria-hidden="true">✦</div>
+        <span class="section-kicker">A little kindness</span>
+        <h2>Hộp mừng cưới</h2>
+        <p>Nếu bạn muốn gửi một món quà nhỏ đến hai chúng mình, hãy chạm vào đây nhé.</p>
+        <button class="gift-button" id="openGift" type="button"><span>🎁</span> Chạm để mở hộp quà</button>
+      </section>
+
+      <section class="countdown-section reveal" aria-label="Đếm ngược đến ngày cưới">
+        <div class="section-kicker">Counting down to forever</div>
+        <h2>Đếm ngược đến ngày cưới</h2>
+        <div class="countdown-grid" id="countdown">
+          <div><strong data-unit="days">00</strong><span>Ngày</span></div>
+          <div><strong data-unit="hours">00</strong><span>Giờ</span></div>
+          <div><strong data-unit="minutes">00</strong><span>Phút</span></div>
+          <div><strong data-unit="seconds">00</strong><span>Giây</span></div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-flower" aria-hidden="true">✾</div>
+        <p>Rất hân hạnh được đón tiếp</p>
+        <h2>Thank you</h2>
+        <span>Hẹn gặp bạn trong ngày trọng đại</span>
+        <div class="footer-mark">K <b>♡</b> M</div>
+        <small>with love · Khánh An & Minh Khang · 2026</small>
+      </footer>
+    </main>
+
+    <div class="modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Xem ảnh" hidden>
+      <button class="modal-close" type="button" data-close="lightbox" aria-label="Đóng">×</button>
+      <img id="lightboxImage" src="" alt="" />
+      <p id="lightboxCaption"></p>
+    </div>
+    <div class="modal gift-modal" id="giftModal" role="dialog" aria-modal="true" aria-label="Hộp mừng cưới" hidden>
+      <button class="modal-close" type="button" data-close="giftModal" aria-label="Đóng">×</button>
+      <span class="gift-modal-icon">♡</span>
+      <h2>Trao nhau chút yêu thương</h2>
+      <p>Thông tin mừng cưới sẽ được cập nhật tại đây. Cảm ơn bạn vì tất cả sự yêu thương dành cho chúng mình!</p>
+      <button class="primary-button" type="button" data-close="giftModal">Đã hiểu</button>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
