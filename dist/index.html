@@ -77,44 +77,55 @@
       </div>
     </section>
 
-    <div class="cover" id="cover" aria-label="Bìa thiệp mời">
-      <div class="cover-card">
-        <span class="cover-kicker">THIỆP MỜI</span>
-        <span class="cover-date">06 · 12 · 2026</span>
-        <span class="cover-names">Khánh An <i>♡</i> Minh Khang</span>
-        <div class="cover-photo" role="img" aria-label="Ảnh cưới minh họa"></div>
-        <span class="cover-welcome">Trân trọng kính mời</span>
-        <strong id="coverGuest">Bạn thân mến</strong>
-        <button class="cover-open" id="openInvitation" type="button">
-          Mở thiệp <span aria-hidden="true">↗</span>
-        </button>
-        <small>Chạm để bắt đầu câu chuyện của chúng mình</small>
+    <section class="cover" id="cover" aria-label="Thiệp cưới mở ba mặt">
+      <div class="cover-booklet">
+        <section class="cover-panel cover-side" aria-label="Bìa ngoài thiệp cưới">
+          <img class="cover-floral" src="assets/invitation-blossoms.png" alt="" aria-hidden="true" />
+          <span class="cover-side-kicker">THIỆP CƯỚI</span>
+          <div class="cover-date-stack" aria-label="Ngày 6 tháng 12 năm 2026">
+            <span>06</span><i></i><span>12</span><i></i><span>26</span>
+          </div>
+          <div class="cover-side-names">
+            <span>Khánh An</span><i aria-hidden="true">♡</i><span>Minh Khang</span>
+          </div>
+        </section>
+
+        <section class="cover-panel cover-main" aria-label="Lời mời dự lễ cưới">
+          <div class="cover-paper">
+            <div class="cover-family-row">
+              <div><small>NHÀ TRAI</small><span>Nguyễn Văn Minh</span><span>Trần Thị Lan</span></div>
+              <span class="cover-seal" aria-label="Song hỷ">囍</span>
+              <div><small>NHÀ GÁI</small><span>Lê Văn An</span><span>Phạm Thị Hương</span></div>
+            </div>
+            <p class="cover-kicker">TRÂN TRỌNG KÍNH MỜI</p>
+            <span class="cover-ornament" aria-hidden="true">❧ ───────── ❧</span>
+            <p class="cover-invite-copy">Đến chung vui cùng gia đình chúng mình</p>
+            <strong class="cover-guest" id="coverGuest">Bạn thân mến</strong>
+            <div class="cover-couple-names">Khánh An <i aria-hidden="true">♡</i> Minh Khang</div>
+            <p class="cover-event-label">TỔ CHỨC VÀO HỒI 10 GIỜ 30</p>
+            <div class="cover-date-band"><span>CHỦ NHẬT</span><strong>06</strong><span>THÁNG 12 · 2026</span></div>
+            <p class="cover-event-detail">The Garden House<br />18 Hoàng Văn Thụ · Hà Nội</p>
+            <button class="cover-open" id="openInvitation" type="button">Mở thiệp <span aria-hidden="true">↗</span></button>
+          </div>
+        </section>
+
+        <section class="cover-panel cover-save-date" aria-label="Lịch ngày cưới">
+          <div class="cover-paper cover-calendar-paper">
+            <div class="cover-wreath" aria-hidden="true"><span>K <i>♡</i> M</span></div>
+            <p class="cover-save-title">Save the Date</p>
+            <div class="cover-month-label">THÁNG 12 · 2026</div>
+            <div class="cover-calendar-weekdays" aria-hidden="true"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div>
+            <div class="cover-calendar" id="coverCalendar" role="img" aria-label="Lịch tháng 12 năm 2026"></div>
+            <p class="cover-calendar-note">Hân hoan chờ ngày vui<br />06 · 12 · 2026</p>
+            <span class="cover-ornament cover-ornament-bottom" aria-hidden="true">❧</span>
+          </div>
+        </section>
       </div>
-    </div>
+      <p class="cover-hint">Chạm “Mở thiệp” để xem lời mời chi tiết</p>
+    </section>
 
     <main class="invitation" id="invitation">
       <div class="topbar" aria-hidden="true"></div>
-      <div class="music-dock">
-        <div class="music-player" id="musicPlayer" hidden>
-          <div class="music-player-heading">
-            <span><strong>I Do</strong><small>911 &amp; Đức Phúc</small></span>
-            <span class="music-player-note">Nhạc nền thiệp cưới</span>
-          </div>
-          <iframe
-            id="musicFrame"
-            title="I Do — 911 và Đức Phúc"
-            width="356"
-            height="200"
-            src="about:blank"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <button class="icon-button" id="musicToggle" type="button" aria-label="Phát nhạc nền I Do" aria-pressed="false" aria-expanded="false">
-          <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        </button>
-      </div>
 
       <section class="hero section-pad reveal" id="home">
         <div class="eyebrow">Thiệp mời</div>

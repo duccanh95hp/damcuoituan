@@ -223,7 +223,6 @@ const cover = $("#cover");
 $("#openInvitation").addEventListener("click", () => {
   cover.classList.add("is-hidden");
   document.body.classList.add("is-open");
-  startBackgroundMusic();
   window.setTimeout(() => $("#home").scrollIntoView({ behavior: "smooth", block: "start" }), 180);
 });
 
@@ -252,6 +251,40 @@ function renderCalendar() {
   }
 }
 renderCalendar();
+
+function renderCoverCalendar() {
+  const calendar = $("#coverCalendar");
+  const year = CONFIG.weddingDate.getFullYear();
+  const month = CONFIG.weddingDate.getMonth();
+  const targetDay = CONFIG.weddingDate.getDate();
+  const mondayStart = (new Date(year, month, 1).getDay() + 6) % 7;
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  for (let index = 0; index < mondayStart; index += 1) {
+    const empty = document.createElement("span");
+    empty.className = "empty";
+    empty.textContent = "·";
+    calendar.append(empty);
+  }
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const cell = document.createElement("span");
+    cell.textContent = day;
+    if (day === targetDay) {
+      cell.className = "wedding-day";
+      cell.setAttribute("aria-label", `Ngày cưới ${day} tháng ${month + 1}`);
+    }
+    calendar.append(cell);
+  }
+
+  while (calendar.children.length % 7 !== 0) {
+    const empty = document.createElement("span");
+    empty.className = "empty";
+    empty.textContent = "·";
+    calendar.append(empty);
+  }
+}
+renderCoverCalendar();
 
 function updateCountdown() {
   const remaining = CONFIG.weddingDate.getTime() - Date.now();
@@ -337,35 +370,4 @@ form.addEventListener("submit", (event) => {
   $(".choice").classList.add("active");
   showToast("Đã gửi lời chúc đến cô dâu chú rể ♡");
   window.setTimeout(() => wish.scrollIntoView({ behavior: "smooth", block: "center" }), 100);
-});
-
-const musicToggle = $("#musicToggle");
-const musicPlayer = $("#musicPlayer");
-const musicFrame = $("#musicFrame");
-const musicEmbedUrl = "https://www.youtube-nocookie.com/embed/7o5XAg_EeLw?autoplay=1&playsinline=1&rel=0";
-
-function startBackgroundMusic() {
-  if (!musicPlayer.hidden) return;
-  musicPlayer.hidden = false;
-  musicFrame.src = musicEmbedUrl;
-  musicToggle.classList.add("is-playing");
-  musicToggle.setAttribute("aria-pressed", "true");
-  musicToggle.setAttribute("aria-expanded", "true");
-  musicToggle.setAttribute("aria-label", "Tắt nhạc nền I Do");
-  showToast("Đang phát I Do — 911 & Đức Phúc");
-}
-
-function stopBackgroundMusic() {
-  if (musicPlayer.hidden) return;
-  musicFrame.src = "about:blank";
-  musicPlayer.hidden = true;
-  musicToggle.classList.remove("is-playing");
-  musicToggle.setAttribute("aria-pressed", "false");
-  musicToggle.setAttribute("aria-expanded", "false");
-  musicToggle.setAttribute("aria-label", "Phát nhạc nền I Do");
-}
-
-musicToggle.addEventListener("click", () => {
-  if (musicPlayer.hidden) startBackgroundMusic();
-  else stopBackgroundMusic();
 });
