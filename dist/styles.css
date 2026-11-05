@@ -91,8 +91,9 @@ img { display: block; max-width: 100%; }
 .cover-ornament { color: #aa987a; font: 12px var(--serif); letter-spacing: .1em; }
 .cover-invite-copy { margin: 9px 0 2px; color: #777066; font: 500 clamp(9px, .92vw, 12px)/1.35 var(--serif); }
 .cover-guest { max-width: 100%; margin: 0; color: #a48757; font: 400 clamp(25px, 3.1vw, 39px)/1.1 var(--script); overflow-wrap: anywhere; }
-.cover-couple-names { margin: 3px 0 7px; color: #9a7f52; font: 400 clamp(23px, 2.55vw, 33px)/1.1 var(--script); }
-.cover-couple-names i { color: #947c5c; font: 13px var(--serif); }
+.cover-couple-names { display: flex; max-width: 100%; flex-direction: column; align-items: center; margin: 3px 0 7px; color: #9a7f52; font: 400 clamp(19px, 2vw, 27px)/1.15 var(--script); }
+.cover-groom-line { display: flex; align-items: center; justify-content: center; gap: 5px; white-space: nowrap; }
+.cover-couple-names i { color: #947c5c; font: normal 25px/1 var(--serif); }
 .cover-event-label { margin: 0 0 5px; color: #706c62; font: 700 clamp(7px, .72vw, 9px) var(--sans); letter-spacing: .06em; }
 .cover-date-band { display: flex; width: 100%; max-width: 270px; align-items: center; justify-content: space-around; gap: 7px; padding: 4px 2px; border-top: 1px solid #b7b1a4; border-bottom: 1px solid #b7b1a4; color: #8b754f; font: 700 clamp(8px, .88vw, 11px) var(--serif); white-space: nowrap; }
 .cover-date-band strong { font: 700 clamp(25px, 3vw, 38px)/.85 var(--serif); }
@@ -175,7 +176,7 @@ img { display: block; max-width: 100%; }
   .cover-main .cover-kicker { margin-top: 15px; font-size: 13px; }
   .cover-invite-copy { font-size: 11px; }
   .cover-guest { font-size: 36px; }
-  .cover-couple-names { font-size: 32px; }
+  .cover-couple-names { font-size: clamp(20px, 5vw, 30px); }
   .cover-date-band { max-width: 300px; }
   .cover-date-band strong { font-size: 36px; }
   .cover-event-detail { font-size: 12px; }
