@@ -1,5 +1,5 @@
 const CONFIG = {
-  weddingDate: new Date("2026-12-06T10:30:00+07:00"),
+  weddingDate: new Date("2026-11-21T10:00:00+07:00"),
 };
 
 const $ = (selector, scope = document) => scope.querySelector(selector);
